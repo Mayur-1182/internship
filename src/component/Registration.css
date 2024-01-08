@@ -1,0 +1,44 @@
+.registration_form {
+    width: min(90vw, 55rem);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    place-content: center;
+    border: 1px solid lightgray;
+    border-radius: 1rem;
+    gap: 1rem;
+    padding: 1rem 1rem;
+    margin: auto;
+    height: 30rem;
+}
+
+.registration_form>div {
+    display: flex;
+    align-items: left;
+    justify-content: center;
+    background-color: rgba(211, 211, 211, 0.15);
+    padding: 0.25rem;
+    border-radius: 1rem;
+}
+
+.user_controls.gender>div,
+input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 0 !important;
+}
+
+.user_actions button {
+    max-width: 50%;
+    font-size: 1.25rem;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    margin: auto;
+    border: 1px solid lightgray;
+}
+
+.user_actions button:hover {
+    background-color: rgb(231, 231, 231);
+}

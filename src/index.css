@@ -1,0 +1,31 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* place-content: center; */
+  font-family: sans-serif;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+input {
+  font-size: 1.125rem;
+  padding: 0.25rem;
+  border: 1px solid lightgray;
+  margin-top: 0.5rem;
+  border-radius: 0.25rem;
+}
+
+input:focus {
+  border: 1px solid lightgray;
+}
