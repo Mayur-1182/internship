@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
-export default function useInput() {
+export default function useInput(validateFunction) {
   const [value, setValue] = useState("");
   const [touch, setTouch] = useState(false);
-  const inputValidity = emailValidation(value);
+  const inputValidity = validateFunction(value);
   const inputValid = touch && !inputValidity;
 
   function inputChangeHandler(e) {
@@ -17,11 +17,6 @@ export default function useInput() {
   function resetHandler() {
     setValue("");
     setTouch("");
-  }
-
-  function emailValidation(value) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(value);
   }
 
   return {

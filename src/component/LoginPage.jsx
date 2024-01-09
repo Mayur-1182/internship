@@ -11,18 +11,34 @@ export default function LoginPage() {
     inputChangeHandler: emailChangeHandler,
     inputBlurHandler: emailBlurHandler,
     resetHandler: emailResetHandler,
-  } = useInput();
+  } = useInput(emailValidation);
 
   function emailValidation(value) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(value);
   }
 
+  const {
+    value: passwordValue,
+    inputValid: passwordInputValid,
+    inputValidity: passwordInputValidity,
+    inputChangeHandler: passwordChangeHandler,
+    inputBlurHandler: passwordBlurHandler,
+    resetHandler: passwordResetHandler,
+  } = useInput(passwordValidation);
+
+  function passwordValidation(password) {
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
+    return passwordRegex.test(password);
+  }
+
   function submitHandler(e) {
     e.preventDefault();
     console.log("login successfully!!");
-    console.log(emailValue);
+    console.log(emailValue, passwordValue);
     emailResetHandler();
+    passwordResetHandler();
   }
 
   return (
@@ -41,20 +57,31 @@ export default function LoginPage() {
             onBlur={emailBlurHandler}
             value={emailValue}
           />
-          {/* <span
-            className={`${emailIsValid ? "error_msg " : "error_msg error"} `}
+          <span
+            className={`${
+              emailInputValid ? "error_msg error " : "error_msg "
+            } `}
           >
             email can't be empty
-          </span> */}
+          </span>
         </div>
         <div className="user_password">
           <label htmlFor="password">Password</label>
-          <input type="password" id="password" />
-          {/* <span
-            className={`${passwordIsValid ? "error_msg " : "error_msg error"} `}
+          <input
+            type="password"
+            id="password"
+            className={`${passwordInputValid ? "inValid" : ""}`}
+            onChange={passwordChangeHandler}
+            onBlur={passwordBlurHandler}
+            value={passwordValue}
+          />
+          <span
+            className={`${
+              passwordInputValid ? "error_msg error" : "error_msg "
+            } `}
           >
             password can't be empty
-          </span> */}
+          </span>
         </div>
         <div className="user_login">
           <button type="submit">Login</button>
