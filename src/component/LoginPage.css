@@ -62,6 +62,10 @@ form>div {
     background-color: rgba(255, 0, 0, 0.17);
 }
 
+.user_login button:disabled {
+    cursor: not-allowed;
+}
+
 @media screen and (max-width:50rem) {
     .login_form {
         display: grid;

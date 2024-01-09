@@ -35,8 +35,11 @@ export default function LoginPage() {
 
   function submitHandler(e) {
     e.preventDefault();
-    console.log("login successfully!!");
-    console.log(emailValue, passwordValue);
+    console.log(emailInputValidity);
+    console.log(passwordInputValidity);
+    if (!emailInputValidity || !passwordInputValidity) {
+      return;
+    }
     emailResetHandler();
     passwordResetHandler();
   }
@@ -80,11 +83,16 @@ export default function LoginPage() {
               passwordInputValid ? "error_msg error" : "error_msg "
             } `}
           >
-            password can't be empty
+            Password can't be empty!
           </span>
         </div>
         <div className="user_login">
-          <button type="submit">Login</button>
+          <button
+            type="submit"
+            disabled={!emailInputValidity || !passwordInputValidity}
+          >
+            Login
+          </button>
         </div>
       </form>
     </main>
