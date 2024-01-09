@@ -26,6 +26,10 @@ input {
   border-radius: 0.25rem;
 }
 
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px white inset;
+}
+
 input:focus {
   border: 1px solid lightgray;
 }

@@ -1,34 +1,28 @@
 import React, { useState } from "react";
 import loginImg from "../assets/login_image.avif";
 import "./LoginPage.css";
+import useInput from "../hooks/useInput";
 
 export default function LoginPage() {
-  const [enteredEmail, setEnteredEmail] = useState("");
-  const [emailIsValid, setEmailIsValid] = useState(false);
+  const {
+    value: emailValue,
+    inputValid: emailInputValid,
+    inputValidity: emailInputValidity,
+    inputChangeHandler: emailChangeHandler,
+    inputBlurHandler: emailBlurHandler,
+    resetHandler: emailResetHandler,
+  } = useInput();
 
-  const [enteredPassword, setEnteredPassword] = useState("");
-  const [passwordIsValid, setPasswordIsValid] = useState(false);
-
-  const [formIsValid, setFormIsValid] = useState(false);
-
-  function emailChangeHandler(e) {
-    setEnteredEmail(e.target.value);
+  function emailValidation(value) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(value);
   }
-
-  function passwordChangeHandler(e) {
-    setEnteredPassword(e.target.value);
-  }
-
-  function emailBlurHandler() {}
-
-  function passwordBlurHandler() {}
 
   function submitHandler(e) {
     e.preventDefault();
     console.log("login successfully!!");
-    console.log(enteredEmail, enteredPassword);
-    setEnteredEmail("");
-    setEnteredPassword("");
+    console.log(emailValue);
+    emailResetHandler();
   }
 
   return (
@@ -42,30 +36,25 @@ export default function LoginPage() {
           <input
             type="email"
             id="email"
+            className={`${emailInputValid ? "inValid" : ""}`}
             onChange={emailChangeHandler}
-            value={enteredEmail}
             onBlur={emailBlurHandler}
+            value={emailValue}
           />
-          <span
+          {/* <span
             className={`${emailIsValid ? "error_msg " : "error_msg error"} `}
           >
             email can't be empty
-          </span>
+          </span> */}
         </div>
         <div className="user_password">
           <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            onChange={passwordChangeHandler}
-            value={enteredPassword}
-            onBeforeInput={passwordBlurHandler}
-          />
-          <span
+          <input type="password" id="password" />
+          {/* <span
             className={`${passwordIsValid ? "error_msg " : "error_msg error"} `}
           >
             password can't be empty
-          </span>
+          </span> */}
         </div>
         <div className="user_login">
           <button type="submit">Login</button>

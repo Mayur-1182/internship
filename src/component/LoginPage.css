@@ -57,6 +57,11 @@ form>div {
     display: block;
 }
 
+.inValid {
+    border: 1px solid red;
+    background-color: rgba(255, 0, 0, 0.17);
+}
+
 @media screen and (max-width:50rem) {
     .login_form {
         display: grid;
