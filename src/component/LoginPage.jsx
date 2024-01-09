@@ -1,98 +1,63 @@
 import React, { useState } from "react";
 import loginImg from "../assets/login_image.avif";
 import "./LoginPage.css";
-import useInput from "../hooks/useInput";
+import { useFormik } from "formik";
+import { signUpSchema } from "../schemas/loginSchema";
 
-export default function LoginPage() {
-  const {
-    value: emailValue,
-    inputValid: emailInputValid,
-    inputValidity: emailInputValidity,
-    inputChangeHandler: emailChangeHandler,
-    inputBlurHandler: emailBlurHandler,
-    resetHandler: emailResetHandler,
-  } = useInput(emailValidation);
+export default function LoginPage1() {
+  const initialValues = {
+    email: "",
+    password: "",
+  };
 
-  function emailValidation(value) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(value);
-  }
-
-  const {
-    value: passwordValue,
-    inputValid: passwordInputValid,
-    inputValidity: passwordInputValidity,
-    inputChangeHandler: passwordChangeHandler,
-    inputBlurHandler: passwordBlurHandler,
-    resetHandler: passwordResetHandler,
-  } = useInput(passwordValidation);
-
-  function passwordValidation(password) {
-    const passwordRegex =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
-    return passwordRegex.test(password);
-  }
-
-  function submitHandler(e) {
-    e.preventDefault();
-    console.log(emailInputValidity);
-    console.log(passwordInputValidity);
-    if (!emailInputValidity || !passwordInputValidity) {
-      return;
-    }
-    emailResetHandler();
-    passwordResetHandler();
-  }
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
+    useFormik({
+      initialValues: initialValues,
+      validationSchema: signUpSchema,
+      onSubmit: (values, action) => {
+        console.log("Form Submitted");
+        console.log(values);
+        action.resetForm();
+      },
+    });
+  console.log(errors);
 
   return (
     <main className="login_form">
       <div className="login_image">
         <img src={loginImg} alt="" />
       </div>
-      <form onSubmit={submitHandler}>
+      <form onSubmit={handleSubmit}>
         <div className="user_email">
           <label htmlFor="email">Email</label>
           <input
             type="email"
             id="email"
-            className={`${emailInputValid ? "inValid" : ""}`}
-            onChange={emailChangeHandler}
-            onBlur={emailBlurHandler}
-            value={emailValue}
+            name="email"
+            value={values.email}
+            onChange={handleChange}
+            onBlur={handleBlur}
           />
-          <span
-            className={`${
-              emailInputValid ? "error_msg error " : "error_msg "
-            } `}
-          >
-            email can't be empty
-          </span>
+          {errors.email && touched.email ? (
+            <p className="error_msg">{errors.email}</p>
+          ) : null}
         </div>
         <div className="user_password">
           <label htmlFor="password">Password</label>
           <input
             type="password"
             id="password"
-            className={`${passwordInputValid ? "inValid" : ""}`}
-            onChange={passwordChangeHandler}
-            onBlur={passwordBlurHandler}
-            value={passwordValue}
+            name="password"
+            value={values.password}
+            onChange={handleChange}
+            onBlur={handleBlur}
           />
-          <span
-            className={`${
-              passwordInputValid ? "error_msg error" : "error_msg "
-            } `}
-          >
-            Password can't be empty!
-          </span>
+          {errors.password && touched.password ? (
+            <p className="error_msg">{errors.password}</p>
+          ) : null}
         </div>
         <div className="user_login">
-          <button
-            type="submit"
-            disabled={!emailInputValidity || !passwordInputValidity}
-          >
-            Login
-          </button>
+          <button type="submit">Login</button>
         </div>
       </form>
     </main>

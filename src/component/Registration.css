@@ -12,13 +12,14 @@
     height: 30rem;
 }
 
+
 .registration_form>div {
     display: flex;
     align-items: left;
     justify-content: center;
     background-color: rgba(211, 211, 211, 0.15);
-    padding: 0.25rem;
-    border-radius: 1rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
 }
 
 .user_controls.gender>div,
@@ -41,4 +42,16 @@ input {
 
 .user_actions button:hover {
     background-color: rgb(231, 231, 231);
+}
+
+@media screen and (max-width:40rem) {
+    .registration_form {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, 1fr);
+        gap: 1rem;
+        padding: 1rem 1rem;
+        margin: auto;
+        height: auto;
+    }
 }
