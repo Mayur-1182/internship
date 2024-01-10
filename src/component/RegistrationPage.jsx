@@ -22,7 +22,6 @@ export default function RegistrationPage() {
       onSubmit: (values, { resetForm }) => {
         console.log("Form Submitted");
         console.log(values);
-        // resetForm({ values: initialValues });
         resetForm();
       },
     });
@@ -42,6 +41,11 @@ export default function RegistrationPage() {
               onBlur={handleBlur}
               value={values.user_name}
             />
+            {touched.user_name ? (
+              <span className="error_msg">{errors.user_name}</span>
+            ) : (
+              ""
+            )}
           </div>
           <div className="user_controls">
             <label htmlFor="password">Password</label>
@@ -53,6 +57,11 @@ export default function RegistrationPage() {
               onBlur={handleBlur}
               value={values.password}
             />
+            {touched.password ? (
+              <span className="error_msg">{errors.password}</span>
+            ) : (
+              ""
+            )}
           </div>
           <div className="user_controls">
             <label htmlFor="first_name">First Name</label>
@@ -64,6 +73,11 @@ export default function RegistrationPage() {
               onBlur={handleBlur}
               value={values.first_name}
             />
+            {touched.first_name ? (
+              <span className="error_msg">{errors.first_name}</span>
+            ) : (
+              ""
+            )}
           </div>
           <div className="user_controls">
             <label htmlFor="last_name">Last Name</label>
@@ -75,6 +89,11 @@ export default function RegistrationPage() {
               onBlur={handleBlur}
               value={values.last_name}
             />
+            {touched.last_name ? (
+              <span className="error_msg">{errors.last_name}</span>
+            ) : (
+              ""
+            )}
           </div>
           <div className="user_controls">
             <label htmlFor="email">Email</label>
@@ -86,6 +105,11 @@ export default function RegistrationPage() {
               onBlur={handleBlur}
               value={values.email}
             />
+            {touched.email ? (
+              <span className="error_msg">{errors.email}</span>
+            ) : (
+              ""
+            )}
           </div>
           <div className="user_controls">
             <label htmlFor="phone">Phone Number</label>
@@ -97,6 +121,11 @@ export default function RegistrationPage() {
               onBlur={handleBlur}
               value={values.phoneNumber}
             />
+            {touched.phoneNumber ? (
+              <span className="error_msg">{errors.phoneNumber}</span>
+            ) : (
+              ""
+            )}
           </div>
         </Fragment>
         <Fragment>
@@ -110,6 +139,11 @@ export default function RegistrationPage() {
               onBlur={handleBlur}
               value={values.company_name}
             />
+            {touched.company_name ? (
+              <span className="error_msg">{errors.company_name}</span>
+            ) : (
+              ""
+            )}
           </div>
           <div className="user_controls">
             <label htmlFor="designation">Designation</label>
@@ -121,6 +155,11 @@ export default function RegistrationPage() {
               onBlur={handleBlur}
               value={values.designation}
             />
+            {touched.designation ? (
+              <span className="error_msg">{errors.designation}</span>
+            ) : (
+              ""
+            )}
           </div>
           <div className="user_actions">
             <button type="submit">SignUp</button>
