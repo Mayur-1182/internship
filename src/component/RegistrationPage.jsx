@@ -8,12 +8,20 @@ export default function RegistrationPage() {
       <form className="registration_form">
         <Fragment>
           <div className="user_controls">
-            <label htmlFor="full_name">Full Name</label>
-            <input type="text" id="full_name" name="fullName" />
+            <label htmlFor="user_name">Username</label>
+            <input type="text" id="user_name" name="user_name" />
           </div>
           <div className="user_controls">
-            <label htmlFor="username">Username</label>
-            <input type="text" id="username" name="userName" />
+            <label htmlFor="password">Password</label>
+            <input type="password" id="password" name="password" />
+          </div>
+          <div className="user_controls">
+            <label htmlFor="first_name">First Name</label>
+            <input type="text" id="first_name" name="firstName" />
+          </div>
+          <div className="user_controls">
+            <label htmlFor="last_name">Last Name</label>
+            <input type="text" id="last_name" name="last_name" />
           </div>
           <div className="user_controls">
             <label htmlFor="email">Email</label>
@@ -26,26 +34,12 @@ export default function RegistrationPage() {
         </Fragment>
         <Fragment>
           <div className="user_controls">
-            <label htmlFor="password">Password</label>
-            <input type="password" id="password" name="password" />
+            <label htmlFor="company_name">Company Name</label>
+            <input type="text" id="company_name" name="company_name" />
           </div>
           <div className="user_controls">
-            <label htmlFor="confirmPassword">Confirm Password</label>
-            <input
-              type="password"
-              id="confirmPassword"
-              name="confirmPassword"
-            />
-          </div>
-          <div className="user_controls gender">
-            <label htmlFor="gender">Gender : </label>
-            <div>
-              <span>Male</span>
-              <input type="radio" name="gender" value="male" />
-
-              <span>Female</span>
-              <input type="radio" name="gender" value="female" />
-            </div>
+            <label htmlFor="designation">Designation</label>
+            <input type="text" id="designation" name="designation" />
           </div>
           <div className="user_actions">
             <button type="submit">SignUp</button>
