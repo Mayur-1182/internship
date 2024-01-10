@@ -19,10 +19,11 @@ export default function RegistrationPage() {
     useFormik({
       initialValues: initialValues,
       validationSchema: signInSchema,
-      onSubmit: (values, action) => {
+      onSubmit: (values, { resetForm }) => {
         console.log("Form Submitted");
         console.log(values);
-        action.resetForm();
+        // resetForm({ values: initialValues });
+        resetForm();
       },
     });
   console.log(errors);
